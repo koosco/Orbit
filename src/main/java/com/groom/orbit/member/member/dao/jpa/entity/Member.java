@@ -1,4 +1,4 @@
-package com.groom.orbit.member.dao.jpa.entity;
+package com.groom.orbit.member.member.dao.jpa.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,13 +17,9 @@ import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
 import com.groom.orbit.job.dao.jpa.entity.InterestJob;
 import com.groom.orbit.job.dao.jpa.entity.Job;
-import com.groom.orbit.member.app.dto.request.UpdateMemberRequestDto;
+import com.groom.orbit.member.member.app.dto.request.UpdateMemberRequestDto;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity(name = "member")
 @Table(name = "member")
@@ -31,6 +27,7 @@ import lombok.Setter;
 @EqualsAndHashCode(of = {"id"})
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Member {
 
   @Id
@@ -38,12 +35,15 @@ public class Member {
   @Column(name = "member_id")
   private Long id;
 
+  @Column(name = "kakao_nickname")
+  private String kakaoNickname;
+
   @Column(name = "nickname", length = 100)
   private String nickname;
 
   @Setter
   @Column(name = "image_url", length = 500)
-  private String imageUrl;
+  private String imageUrl = "";
 
   @Column(name = "known_prompt", length = 1000)
   private String knownPrompt = "";
