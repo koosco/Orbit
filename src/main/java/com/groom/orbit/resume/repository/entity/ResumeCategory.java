@@ -1,4 +1,4 @@
-package com.groom.orbit.resume.dao.entity;
+package com.groom.orbit.resume.repository.entity;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.groom.orbit.resume.app.dto;
+package com.groom.orbit.resume.application.dto;
 
 import java.util.List;
 

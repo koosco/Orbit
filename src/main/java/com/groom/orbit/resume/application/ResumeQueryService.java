@@ -1,6 +1,6 @@
-package com.groom.orbit.resume.app;
+package com.groom.orbit.resume.application;
 
-import static com.groom.orbit.resume.dao.entity.ResumeCategory.*;
+import static com.groom.orbit.resume.repository.entity.ResumeCategory.*;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -11,13 +11,16 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.groom.orbit.common.exception.CommonException;
+import com.groom.orbit.common.exception.ErrorCode;
 import com.groom.orbit.member.member.app.MemberQueryService;
 import com.groom.orbit.member.member.dao.jpa.entity.Member;
-import com.groom.orbit.resume.app.dto.GetOtherResumeResponseDto;
-import com.groom.orbit.resume.app.dto.GetResumeResponseDto;
-import com.groom.orbit.resume.app.dto.ResumeResponseDto;
-import com.groom.orbit.resume.dao.ResumeRepository;
-import com.groom.orbit.resume.dao.entity.ResumeCategory;
+import com.groom.orbit.resume.application.dto.GetOtherResumeResponseDto;
+import com.groom.orbit.resume.application.dto.GetResumeResponseDto;
+import com.groom.orbit.resume.application.dto.ResumeResponseDto;
+import com.groom.orbit.resume.repository.ResumeRepository;
+import com.groom.orbit.resume.repository.entity.Resume;
+import com.groom.orbit.resume.repository.entity.ResumeCategory;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +31,12 @@ public class ResumeQueryService {
 
   private final ResumeRepository resumeRepository;
   private final MemberQueryService memberQueryService;
+
+  public Resume findResume(Long resumeId) {
+    return resumeRepository
+        .findById(resumeId)
+        .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_RESUME));
+  }
 
   public GetResumeResponseDto getMyResume(Long memberId) {
     Map<ResumeCategory, List<ResumeResponseDto>> categorizedResumes =
@@ -62,7 +71,6 @@ public class ResumeQueryService {
         .collect(Collectors.groupingBy(ResumeResponseDto::resumeCategory));
   }
 
-  /** TODO Resume가 없는 사용자 조회시 빈 화면이 나와야할 것 같은데 ?? */
   public Object checkIsResume(Long memberId, Long otherId) {
     if (memberId.equals(otherId)) {
       return getMyResume(memberId);

@@ -1,4 +1,4 @@
-package com.groom.orbit.resume.dao.entity;
+package com.groom.orbit.resume.repository.entity;
 
 import java.time.LocalDate;
 
@@ -8,7 +8,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import com.groom.orbit.goal.goal.dao.entity.MemberGoal;
 import com.groom.orbit.member.member.dao.jpa.entity.Member;
-import com.groom.orbit.resume.app.dto.ResumeRequestDto;
+import com.groom.orbit.resume.application.dto.ResumeRequestDto;
 
 import lombok.*;
 
