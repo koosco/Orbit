@@ -2,7 +2,7 @@ package com.groom.orbit.member.auth.app.oauth;
 
 import org.springframework.stereotype.Component;
 
-import com.groom.orbit.member.auth.app.kakao.KakaoReissueParams;
+import com.groom.orbit.member.auth.app.oauth.kakao.KakaoReissueParams;
 
 @Component
 public class RequestOAuthInfoService {

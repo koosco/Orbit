@@ -14,8 +14,8 @@ import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
 import com.groom.orbit.config.security.JwtTokenProvider;
 import com.groom.orbit.member.auth.app.dto.LoginResponseDto;
-import com.groom.orbit.member.auth.app.kakao.KakaoReissueParams;
 import com.groom.orbit.member.auth.app.oauth.*;
+import com.groom.orbit.member.auth.app.oauth.kakao.KakaoReissueParams;
 import com.groom.orbit.member.member.dao.jpa.MemberRepository;
 import com.groom.orbit.member.member.dao.jpa.entity.Member;
 

@@ -1,15 +1,15 @@
-package com.groom.orbit.member.auth.app.kakao;
+package com.groom.orbit.member.auth.app.oauth.kakao;
 
 import static com.groom.orbit.config.security.SecurityConst.AUTHORIZATION_HEADER;
 import static com.groom.orbit.config.security.SecurityConst.TOKEN_PREFIX;
-import static com.groom.orbit.member.auth.app.kakao.KakaoSecurityConst.CLIENT_ID;
-import static com.groom.orbit.member.auth.app.kakao.KakaoSecurityConst.CLIENT_SECRET;
-import static com.groom.orbit.member.auth.app.kakao.KakaoSecurityConst.GRANT_TYPE;
-import static com.groom.orbit.member.auth.app.kakao.KakaoSecurityConst.KAKAO_AUTHORIZATION_CODE_GRANT_TYPE;
-import static com.groom.orbit.member.auth.app.kakao.KakaoSecurityConst.KAKAO_REQUEST_PROPERTY_PROFILE;
-import static com.groom.orbit.member.auth.app.kakao.KakaoSecurityConst.PROPERTY_KEYS;
-import static com.groom.orbit.member.auth.app.kakao.KakaoSecurityConst.REQUEST_ACCESS_TOKEN_URI;
-import static com.groom.orbit.member.auth.app.kakao.KakaoSecurityConst.REQUEST_OAUTH_INFO_URI;
+import static com.groom.orbit.member.auth.app.oauth.kakao.KakaoSecurityConst.CLIENT_ID;
+import static com.groom.orbit.member.auth.app.oauth.kakao.KakaoSecurityConst.CLIENT_SECRET;
+import static com.groom.orbit.member.auth.app.oauth.kakao.KakaoSecurityConst.GRANT_TYPE;
+import static com.groom.orbit.member.auth.app.oauth.kakao.KakaoSecurityConst.KAKAO_AUTHORIZATION_CODE_GRANT_TYPE;
+import static com.groom.orbit.member.auth.app.oauth.kakao.KakaoSecurityConst.KAKAO_REQUEST_PROPERTY_PROFILE;
+import static com.groom.orbit.member.auth.app.oauth.kakao.KakaoSecurityConst.PROPERTY_KEYS;
+import static com.groom.orbit.member.auth.app.oauth.kakao.KakaoSecurityConst.REQUEST_ACCESS_TOKEN_URI;
+import static com.groom.orbit.member.auth.app.oauth.kakao.KakaoSecurityConst.REQUEST_OAUTH_INFO_URI;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;

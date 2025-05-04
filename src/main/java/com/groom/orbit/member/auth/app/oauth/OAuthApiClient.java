@@ -1,6 +1,6 @@
 package com.groom.orbit.member.auth.app.oauth;
 
-import com.groom.orbit.member.auth.app.kakao.KakaoReissueParams;
+import com.groom.orbit.member.auth.app.oauth.kakao.KakaoReissueParams;
 
 public interface OAuthApiClient {
 

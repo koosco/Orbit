@@ -1,4 +1,4 @@
-package com.groom.orbit.member.auth.app.kakao;
+package com.groom.orbit.member.auth.app.oauth.kakao;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
