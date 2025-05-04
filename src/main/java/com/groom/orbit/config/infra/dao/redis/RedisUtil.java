@@ -1,4 +1,4 @@
-package com.groom.orbit.config.redis;
+package com.groom.orbit.config.infra.dao.redis;
 
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package com.groom.orbit.config.ai;
+package com.groom.orbit.config.infra.vectorstore;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
