@@ -17,12 +17,6 @@ public class ScheduleCommandController {
 
   private final ScheduleCommandService scheduleCommandService;
 
-  @PostMapping
-  public ResponseDto<CommonSuccessDto> createSchedule(
-      @AuthMember Long memberId, @RequestBody ScheduleRequestDto scheduleRequestDto) {
-    return ResponseDto.ok(scheduleCommandService.createSchedule(memberId, scheduleRequestDto));
-  }
-
   @PatchMapping("/{scheduleId}")
   public ResponseDto<CommonSuccessDto> updateSchedule(
       @AuthMember Long memberId,
