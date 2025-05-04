@@ -1,6 +1,5 @@
 package com.groom.orbit.member.auth.application;
 
-import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -10,10 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
-import com.groom.orbit.infra.ai.application.VectorService;
-import com.groom.orbit.infra.ai.application.dto.CreateVectorDto;
-import com.groom.orbit.member.auth.application.dto.LoginResponseDto;
-import com.groom.orbit.member.auth.application.oauth.*;
+import com.groom.orbit.member.auth.application.oauth.AuthToken;
 import com.groom.orbit.member.auth.application.oauth.kakao.KakaoReissueParams;
 import com.groom.orbit.member.auth.application.provider.JwtTokenProvider;
 import com.groom.orbit.member.member.repository.jpa.MemberRepository;
@@ -24,49 +20,14 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class AuthService {
+public class TokenReissueService {
 
   private final MemberRepository memberRepository;
-  private final AuthTokenGenerator authTokensGenerator;
-  private final RequestOAuthInfoService requestOAuthInfoService;
-  private final VectorService vectorService;
   private final JwtTokenProvider jwtTokenProvider;
   private final RedisTemplate<String, String> redisTemplate;
 
   @Value("${jwt.refresh-token-validity}")
   private Long refreshTokenValidityMilliseconds;
-
-  public LoginResponseDto login(OAuthLoginParams params) {
-    OAuthInfoResponse oAuthInfoResponse = requestOAuthInfoService.request(params);
-    Member authMember = findOrCreateMember(oAuthInfoResponse);
-    authMember.setLastLogin(LocalDate.now());
-    return LoginResponseDto.fromLogin(
-        authTokensGenerator.generate(authMember.getId()), authMember.getKakaoNickname());
-  }
-
-  public Member findOrCreateMember(OAuthInfoResponse oAuthInfoResponse) {
-    return memberRepository
-        .findByKakaoNickname(oAuthInfoResponse.getKakaoNickname())
-        .orElseGet(() -> newUser(oAuthInfoResponse));
-  }
-
-  private Member newUser(OAuthInfoResponse oAuthInfoResponse) {
-    Member member =
-        Member.builder()
-            .imageUrl(oAuthInfoResponse.getKakaoImage())
-            .kakaoNickname(oAuthInfoResponse.getKakaoNickname())
-            .nickname(oAuthInfoResponse.getKakaoNickname())
-            .build();
-
-    Member savedMember = memberRepository.save(member);
-    saveVector(savedMember);
-    return savedMember;
-  }
-
-  private void saveVector(Member member) {
-    CreateVectorDto vectorDto = CreateVectorDto.builder().memberId(member.getId()).build();
-    vectorService.save(vectorDto);
-  }
 
   public AuthToken reissue(KakaoReissueParams params) {
 
