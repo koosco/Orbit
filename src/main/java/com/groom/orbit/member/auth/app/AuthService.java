@@ -8,10 +8,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.groom.orbit.ai.app.VectorService;
-import com.groom.orbit.ai.app.dto.CreateVectorDto;
 import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
+import com.groom.orbit.infra.ai.app.VectorService;
+import com.groom.orbit.infra.ai.app.dto.CreateVectorDto;
 import com.groom.orbit.member.auth.app.dto.LoginResponseDto;
 import com.groom.orbit.member.auth.app.oauth.*;
 import com.groom.orbit.member.auth.app.oauth.kakao.KakaoReissueParams;

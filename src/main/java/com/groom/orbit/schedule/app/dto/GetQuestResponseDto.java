@@ -3,8 +3,8 @@ package com.groom.orbit.schedule.app.dto;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.groom.orbit.goal.dao.entity.GoalCategory;
-import com.groom.orbit.quest.dao.entity.Quest;
+import com.groom.orbit.goal.goal.dao.entity.GoalCategory;
+import com.groom.orbit.goal.quest.dao.entity.Quest;
 
 public record GetQuestResponseDto(
     Long questId,

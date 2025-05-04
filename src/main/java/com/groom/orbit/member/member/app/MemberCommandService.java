@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.groom.orbit.S3.S3UploadService;
 import com.groom.orbit.common.dto.CommonSuccessDto;
+import com.groom.orbit.infra.S3.S3UploadService;
 import com.groom.orbit.member.member.app.dto.request.UpdateMemberRequestDto;
 import com.groom.orbit.member.member.dao.jpa.MemberRepository;
 import com.groom.orbit.member.member.dao.jpa.entity.Member;

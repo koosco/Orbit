@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.groom.orbit.ai.app.VectorService;
-import com.groom.orbit.ai.app.dto.CreateVectorDto;
 import com.groom.orbit.common.dto.CommonSuccessDto;
+import com.groom.orbit.infra.ai.app.VectorService;
+import com.groom.orbit.infra.ai.app.dto.CreateVectorDto;
 import com.groom.orbit.job.app.dto.InterestJobRequestDto;
 import com.groom.orbit.job.dao.jpa.InterestJobRepository;
 import com.groom.orbit.job.dao.jpa.entity.InterestJob;

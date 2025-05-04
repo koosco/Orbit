@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.groom.orbit.ai.app.AiService;
+import com.groom.orbit.infra.ai.app.AiService;
 import com.groom.orbit.job.app.InterestJobService;
 import com.groom.orbit.job.app.dto.JobDetailResponseDto;
 import com.groom.orbit.member.member.app.dto.response.GetFeedbackResponseDto;
