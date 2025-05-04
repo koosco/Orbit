@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import jakarta.persistence.*;
 
-import org.hibernate.annotations.ColumnDefault;
-
 import lombok.*;
 
 @Entity(name = "auth_member")
@@ -27,7 +25,6 @@ public class AuthMember {
   @Column(name = "nickname", length = 100)
   private String nickname;
 
-  @ColumnDefault("")
   @Column(name = "image_url")
   @Builder.Default
   private String imageUrl = "";
