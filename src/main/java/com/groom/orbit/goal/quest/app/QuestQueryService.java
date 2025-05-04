@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
-import com.groom.orbit.fcm.FcmService;
 import com.groom.orbit.goal.goal.app.MemberGoalService;
 import com.groom.orbit.goal.goal.dao.entity.MemberGoal;
 import com.groom.orbit.goal.quest.app.dto.response.GetQuestResponseDto;
 import com.groom.orbit.goal.quest.dao.QuestRepository;
 import com.groom.orbit.goal.quest.dao.entity.Quest;
+import com.groom.orbit.infra.fcm.FcmService;
 
 import lombok.RequiredArgsConstructor;
 

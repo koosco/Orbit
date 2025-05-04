@@ -5,12 +5,12 @@ import java.util.stream.IntStream;
 
 import org.springframework.stereotype.Service;
 
-import com.groom.orbit.ai.app.AiService;
 import com.groom.orbit.goal.goal.app.dto.response.GetRecommendGoalListResponseDto;
 import com.groom.orbit.goal.goal.app.dto.response.GetRecommendGoalResponseDto;
 import com.groom.orbit.goal.goal.app.dto.response.RecommendGoalListResponseDto;
 import com.groom.orbit.goal.goal.app.dto.response.RecommendGoalResponseDto;
 import com.groom.orbit.goal.goal.dao.entity.Goal;
+import com.groom.orbit.infra.ai.app.AiService;
 
 import lombok.RequiredArgsConstructor;
 
