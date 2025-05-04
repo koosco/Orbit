@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.resume.app.ResumeQueryService;
-import com.groom.orbit.resume.app.dto.GetResumeResponseDto;
+import com.groom.orbit.resume.application.ResumeQueryService;
+import com.groom.orbit.resume.application.dto.GetResumeResponseDto;
 
 import lombok.RequiredArgsConstructor;
 

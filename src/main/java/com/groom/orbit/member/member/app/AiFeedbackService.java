@@ -11,8 +11,8 @@ import com.groom.orbit.job.app.dto.JobDetailResponseDto;
 import com.groom.orbit.member.member.app.dto.response.GetFeedbackResponseDto;
 import com.groom.orbit.member.member.dao.jpa.MemberRepository;
 import com.groom.orbit.member.member.dao.jpa.entity.Member;
-import com.groom.orbit.resume.app.ResumeQueryService;
-import com.groom.orbit.resume.app.dto.GetResumeResponseDto;
+import com.groom.orbit.resume.application.ResumeQueryService;
+import com.groom.orbit.resume.application.dto.GetResumeResponseDto;
 
 import lombok.RequiredArgsConstructor;
 

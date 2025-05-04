@@ -1,10 +1,10 @@
-package com.groom.orbit.resume.app.dto;
+package com.groom.orbit.resume.application.dto;
 
 import java.time.LocalDate;
 
 import com.groom.orbit.member.member.dao.jpa.entity.Member;
-import com.groom.orbit.resume.dao.entity.Resume;
-import com.groom.orbit.resume.dao.entity.ResumeCategory;
+import com.groom.orbit.resume.repository.entity.Resume;
+import com.groom.orbit.resume.repository.entity.ResumeCategory;
 
 public record ResumeRequestDto(
     ResumeCategory resumeCategory,

@@ -21,8 +21,8 @@ import com.groom.orbit.infra.ai.app.AiService;
 import com.groom.orbit.infra.ai.app.VectorService;
 import com.groom.orbit.infra.ai.dao.vector.Vector;
 import com.groom.orbit.member.member.app.dto.response.GetFeedbackResponseDto;
-import com.groom.orbit.resume.app.dto.GetResumeResponseDto;
-import com.groom.orbit.resume.app.dto.ResumeResponseDto;
+import com.groom.orbit.resume.application.dto.GetResumeResponseDto;
+import com.groom.orbit.resume.application.dto.ResumeResponseDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,10 +1,10 @@
-package com.groom.orbit.resume.app.dto;
+package com.groom.orbit.resume.application.dto;
 
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.groom.orbit.resume.dao.entity.Resume;
-import com.groom.orbit.resume.dao.entity.ResumeCategory;
+import com.groom.orbit.resume.repository.entity.Resume;
+import com.groom.orbit.resume.repository.entity.ResumeCategory;
 
 public record ResumeResponseDto(
     Long resumeId,

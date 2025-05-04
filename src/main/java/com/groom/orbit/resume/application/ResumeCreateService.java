@@ -1,60 +1,34 @@
-package com.groom.orbit.resume.app;
+package com.groom.orbit.resume.application;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.groom.orbit.common.dto.CommonSuccessDto;
-import com.groom.orbit.common.exception.CommonException;
-import com.groom.orbit.common.exception.ErrorCode;
 import com.groom.orbit.goal.goal.app.MemberGoalService;
 import com.groom.orbit.goal.goal.dao.entity.MemberGoal;
 import com.groom.orbit.member.member.app.MemberQueryService;
 import com.groom.orbit.member.member.dao.jpa.entity.Member;
-import com.groom.orbit.resume.app.dto.ResumeRequestDto;
-import com.groom.orbit.resume.app.dto.ResumeResponseDto;
-import com.groom.orbit.resume.dao.ResumeRepository;
-import com.groom.orbit.resume.dao.entity.Resume;
+import com.groom.orbit.resume.application.dto.ResumeRequestDto;
+import com.groom.orbit.resume.application.dto.ResumeResponseDto;
+import com.groom.orbit.resume.repository.ResumeRepository;
+import com.groom.orbit.resume.repository.entity.Resume;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ResumeCommandService {
+public class ResumeCreateService {
 
-  private final ResumeRepository resumeRepository;
   private final MemberQueryService memberQueryService;
   private final MemberGoalService memberGoalService;
 
-  public Resume findResume(Long resumeId) {
-    return resumeRepository
-        .findById(resumeId)
-        .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_RESUME));
-  }
+  private final ResumeRepository resumeRepository;
 
   public CommonSuccessDto createResume(Long memberId, ResumeRequestDto request) {
     Member member = memberQueryService.findMember(memberId);
 
     resumeRepository.save(request.toResume(member));
-
-    return CommonSuccessDto.fromEntity(true);
-  }
-
-  public CommonSuccessDto updateResume(Long memberId, Long resumeId, ResumeRequestDto requestDto) {
-    Resume resume = findResume(resumeId);
-    resume.validate(memberId);
-
-    resume.update(requestDto);
-
-    return CommonSuccessDto.fromEntity(true);
-  }
-
-  public CommonSuccessDto deleteResume(Long memberId, Long resumeId) {
-    Resume resume = findResume(resumeId);
-    resume.validate(memberId);
-
-    resume.delete();
-    resumeRepository.deleteById(resumeId);
 
     return CommonSuccessDto.fromEntity(true);
   }
