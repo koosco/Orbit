@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.CommonSuccessDto;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.member.member.app.MemberCommandService;
+import com.groom.orbit.member.member.app.MemberInfoUpdateService;
 import com.groom.orbit.member.member.app.dto.request.UpdateMemberRequestDto;
 
 import lombok.RequiredArgsConstructor;
@@ -15,14 +15,14 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/member")
-public class MemberCommandController {
+public class MemberInfoUpdateController {
 
-  private final MemberCommandService memberCommandService;
+  private final MemberInfoUpdateService memberInfoUpdateService;
 
   @PatchMapping
   public ResponseDto<CommonSuccessDto> updateMember(
-      @AuthMember Long memberId, @RequestBody UpdateMemberRequestDto requestDto) {
-    return ResponseDto.ok(memberCommandService.updateMember(memberId, requestDto));
+      @AuthMember Long memberId, @RequestBody UpdateMemberRequestDto dto) {
+    return ResponseDto.ok(memberInfoUpdateService.updateMember(memberId, dto));
   }
 
   @PatchMapping(
@@ -31,6 +31,6 @@ public class MemberCommandController {
   public ResponseDto<CommonSuccessDto> updateMemberProfileImageUrl(
       @AuthMember Long memberId,
       @RequestPart(value = "file", required = false) MultipartFile file) {
-    return ResponseDto.ok(memberCommandService.updateMemberProfileImage(memberId, file));
+    return ResponseDto.ok(memberInfoUpdateService.updateMemberProfileImage(memberId, file));
   }
 }

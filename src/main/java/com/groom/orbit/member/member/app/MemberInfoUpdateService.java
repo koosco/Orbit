@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class MemberCommandService {
+public class MemberInfoUpdateService {
 
   private final MemberRepository memberRepository;
   private final MemberQueryService memberQueryService;
@@ -25,20 +25,16 @@ public class MemberCommandService {
     Member member = memberQueryService.findMember(memberId);
 
     member.updateMember(requestDto);
-
     memberRepository.save(member);
 
     return CommonSuccessDto.fromEntity(true);
   }
 
   public CommonSuccessDto updateMemberProfileImage(Long memberId, MultipartFile multipartFile) {
-
     Member member = memberQueryService.findMember(memberId);
 
     String newProfileUrl = s3UploadService.uploadFile(multipartFile);
-
     member.setImageUrl(newProfileUrl);
-
     memberRepository.save(member);
 
     return CommonSuccessDto.fromEntity(true);

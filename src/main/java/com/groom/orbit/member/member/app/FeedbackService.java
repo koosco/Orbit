@@ -9,6 +9,7 @@ import com.groom.orbit.infra.ai.app.AiService;
 import com.groom.orbit.job.app.InterestJobService;
 import com.groom.orbit.job.app.dto.JobDetailResponseDto;
 import com.groom.orbit.member.member.app.dto.response.GetFeedbackResponseDto;
+import com.groom.orbit.member.member.app.dto.response.GetMemberAiFeedbackResponseDto;
 import com.groom.orbit.member.member.dao.jpa.MemberRepository;
 import com.groom.orbit.member.member.dao.jpa.entity.Member;
 import com.groom.orbit.resume.application.ResumeQueryService;
@@ -18,11 +19,12 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class AiFeedbackService {
+public class FeedbackService {
 
   private final AiService aiService;
   private final InterestJobService interestJobService;
   private final ResumeQueryService resumeQueryService;
+  private final MemberQueryService memberQueryService;
   private final MemberRepository memberRepository;
 
   @Transactional
@@ -31,10 +33,16 @@ public class AiFeedbackService {
     GetResumeResponseDto dto = resumeQueryService.getMyResume(memberId);
 
     GetFeedbackResponseDto aiResponse = aiService.getMemberFeedback(interestJobs, dto);
-    Member member = memberRepository.findById(memberId).orElseThrow();
+    Member member = memberQueryService.findMember(memberId);
     member.setAiFeedback(aiResponse.feedback());
 
     return aiResponse;
+  }
+
+  public GetMemberAiFeedbackResponseDto getMemberAiFeedback(Long memberId) {
+    Member member = memberQueryService.findMember(memberId);
+
+    return GetMemberAiFeedbackResponseDto.fromMember(member);
   }
 
   private String getInterestJobs(Long memberId) {
