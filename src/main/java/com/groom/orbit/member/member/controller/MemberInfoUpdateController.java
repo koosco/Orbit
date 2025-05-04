@@ -7,8 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.CommonSuccessDto;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.member.member.app.MemberInfoUpdateService;
-import com.groom.orbit.member.member.app.dto.request.UpdateMemberRequestDto;
+import com.groom.orbit.member.member.application.MemberInfoUpdateService;
+import com.groom.orbit.member.member.application.dto.request.UpdateMemberRequestDto;
 
 import lombok.RequiredArgsConstructor;
 

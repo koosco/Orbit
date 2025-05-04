@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
-import com.groom.orbit.goal.quest.dao.QuestRepository;
+import com.groom.orbit.goal.quest.repository.QuestRepository;
 import com.groom.orbit.schedule.application.dto.GetCalendarResponseDto;
 import com.groom.orbit.schedule.application.dto.GetQuestResponseDto;
 import com.groom.orbit.schedule.application.dto.GetScheduleResponseDto;

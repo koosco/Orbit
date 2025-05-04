@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.member.member.app.MemberQueryService;
-import com.groom.orbit.member.member.app.dto.response.GetMemberProfileResponseDto;
+import com.groom.orbit.member.member.application.MemberQueryService;
+import com.groom.orbit.member.member.application.dto.response.GetMemberProfileResponseDto;
 
 import lombok.RequiredArgsConstructor;
 

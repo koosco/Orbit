@@ -4,10 +4,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.groom.orbit.common.dto.CommonSuccessDto;
-import com.groom.orbit.goal.goal.app.MemberGoalService;
-import com.groom.orbit.goal.goal.dao.entity.MemberGoal;
-import com.groom.orbit.member.member.app.MemberQueryService;
-import com.groom.orbit.member.member.dao.jpa.entity.Member;
+import com.groom.orbit.goal.goal.application.MemberGoalService;
+import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
+import com.groom.orbit.member.member.application.MemberQueryService;
+import com.groom.orbit.member.member.repository.jpa.entity.Member;
 import com.groom.orbit.resume.application.dto.ResumeRequestDto;
 import com.groom.orbit.resume.application.dto.ResumeResponseDto;
 import com.groom.orbit.resume.repository.ResumeRepository;

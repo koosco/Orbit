@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.groom.orbit.member.member.dao.jpa.entity.Member;
+import com.groom.orbit.member.member.repository.jpa.entity.Member;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

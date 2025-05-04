@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.groom.orbit.common.exception.BaseResponse;
-import com.groom.orbit.member.auth.app.AuthService;
-import com.groom.orbit.member.auth.app.oauth.AuthToken;
-import com.groom.orbit.member.auth.app.oauth.kakao.KakaoReissueParams;
+import com.groom.orbit.member.auth.application.AuthService;
+import com.groom.orbit.member.auth.application.oauth.AuthToken;
+import com.groom.orbit.member.auth.application.oauth.kakao.KakaoReissueParams;
 
 import lombok.RequiredArgsConstructor;
 

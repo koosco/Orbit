@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.member.member.app.FeedbackService;
-import com.groom.orbit.member.member.app.dto.response.GetFeedbackResponseDto;
-import com.groom.orbit.member.member.app.dto.response.GetMemberAiFeedbackResponseDto;
+import com.groom.orbit.member.member.application.FeedbackService;
+import com.groom.orbit.member.member.application.dto.response.GetFeedbackResponseDto;
+import com.groom.orbit.member.member.application.dto.response.GetMemberAiFeedbackResponseDto;
 
 import lombok.RequiredArgsConstructor;
 

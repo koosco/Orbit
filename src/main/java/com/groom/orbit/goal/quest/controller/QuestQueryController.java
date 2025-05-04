@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.goal.quest.app.QuestQueryService;
-import com.groom.orbit.goal.quest.app.dto.response.GetQuestResponseDto;
+import com.groom.orbit.goal.quest.application.QuestQueryService;
+import com.groom.orbit.goal.quest.application.dto.response.GetQuestResponseDto;
 
 import lombok.RequiredArgsConstructor;
 

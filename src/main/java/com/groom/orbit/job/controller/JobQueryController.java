@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.job.app.JobQueryService;
-import com.groom.orbit.job.app.dto.JobDetailResponseDto;
-import com.groom.orbit.job.app.dto.JobGroupingByCategoryResponseDto;
+import com.groom.orbit.job.application.JobQueryService;
+import com.groom.orbit.job.application.dto.JobDetailResponseDto;
+import com.groom.orbit.job.application.dto.JobGroupingByCategoryResponseDto;
 
 import lombok.RequiredArgsConstructor;
 

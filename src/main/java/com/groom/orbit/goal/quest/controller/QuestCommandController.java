@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.CommonSuccessDto;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.goal.quest.app.QuestCommandService;
-import com.groom.orbit.goal.quest.app.dto.request.CreateQuestRequestDto;
-import com.groom.orbit.goal.quest.app.dto.request.UpdateQuestRequestDto;
-import com.groom.orbit.goal.quest.app.dto.response.CreateQuestResponse;
+import com.groom.orbit.goal.quest.application.QuestCommandService;
+import com.groom.orbit.goal.quest.application.dto.request.CreateQuestRequestDto;
+import com.groom.orbit.goal.quest.application.dto.request.UpdateQuestRequestDto;
+import com.groom.orbit.goal.quest.application.dto.response.CreateQuestResponse;
 
 import lombok.RequiredArgsConstructor;
 
