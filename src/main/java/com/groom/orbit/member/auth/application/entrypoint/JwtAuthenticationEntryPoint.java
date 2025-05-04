@@ -1,4 +1,4 @@
-package com.groom.orbit.member.auth.application.handler;
+package com.groom.orbit.member.auth.application.entrypoint;
 
 import java.io.IOException;
 
