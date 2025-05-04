@@ -2,7 +2,7 @@ package com.groom.orbit.member.auth.app.oauth;
 
 import org.springframework.stereotype.Component;
 
-import com.groom.orbit.config.security.JwtTokenProvider;
+import com.groom.orbit.member.auth.app.provider.JwtTokenProvider;
 
 import lombok.RequiredArgsConstructor;
 

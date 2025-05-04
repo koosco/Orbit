@@ -1,4 +1,4 @@
-package com.groom.orbit.member.auth.app.service;
+package com.groom.orbit.member.auth.app;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

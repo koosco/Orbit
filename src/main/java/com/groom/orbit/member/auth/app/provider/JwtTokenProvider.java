@@ -1,4 +1,4 @@
-package com.groom.orbit.config.security;
+package com.groom.orbit.member.auth.app.provider;
 
 import java.security.Key;
 import java.time.ZonedDateTime;
@@ -12,13 +12,7 @@ import org.springframework.stereotype.Component;
 import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 

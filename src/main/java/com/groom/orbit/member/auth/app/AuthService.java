@@ -12,10 +12,10 @@ import com.groom.orbit.ai.app.VectorService;
 import com.groom.orbit.ai.app.dto.CreateVectorDto;
 import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
-import com.groom.orbit.config.security.JwtTokenProvider;
 import com.groom.orbit.member.auth.app.dto.LoginResponseDto;
 import com.groom.orbit.member.auth.app.oauth.*;
 import com.groom.orbit.member.auth.app.oauth.kakao.KakaoReissueParams;
+import com.groom.orbit.member.auth.app.provider.JwtTokenProvider;
 import com.groom.orbit.member.member.dao.jpa.MemberRepository;
 import com.groom.orbit.member.member.dao.jpa.entity.Member;
 
