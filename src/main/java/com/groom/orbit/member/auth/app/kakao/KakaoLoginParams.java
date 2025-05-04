@@ -3,7 +3,7 @@ package com.groom.orbit.member.auth.app.kakao;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import com.groom.orbit.member.auth.app.oAuth.OAuthLoginParams;
+import com.groom.orbit.member.auth.app.oauth.OAuthLoginParams;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

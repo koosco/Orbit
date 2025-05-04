@@ -2,7 +2,7 @@ package com.groom.orbit.member.auth.app.kakao;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.groom.orbit.member.auth.app.oAuth.OAuthInfoResponse;
+import com.groom.orbit.member.auth.app.oauth.OAuthInfoResponse;
 
 import lombok.Getter;
 

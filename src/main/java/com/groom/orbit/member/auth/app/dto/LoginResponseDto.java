@@ -1,6 +1,6 @@
 package com.groom.orbit.member.auth.app.dto;
 
-import com.groom.orbit.member.auth.app.oAuth.AuthToken;
+import com.groom.orbit.member.auth.app.oauth.AuthToken;
 
 public record LoginResponseDto(AuthToken authToken, String nickname) {
 

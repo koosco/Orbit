@@ -1,4 +1,4 @@
-package com.groom.orbit.member.auth.app.oAuth;
+package com.groom.orbit.member.auth.app.oauth;
 
 import com.groom.orbit.member.auth.app.kakao.KakaoReissueParams;
 

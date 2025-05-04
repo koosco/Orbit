@@ -20,9 +20,9 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import com.groom.orbit.member.auth.app.oAuth.OAuthApiClient;
-import com.groom.orbit.member.auth.app.oAuth.OAuthInfoResponse;
-import com.groom.orbit.member.auth.app.oAuth.OAuthLoginParams;
+import com.groom.orbit.member.auth.app.oauth.OAuthApiClient;
+import com.groom.orbit.member.auth.app.oauth.OAuthInfoResponse;
+import com.groom.orbit.member.auth.app.oauth.OAuthLoginParams;
 
 import lombok.RequiredArgsConstructor;
 
