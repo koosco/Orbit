@@ -1,9 +1,9 @@
-package com.groom.orbit.schedule.app.dto;
+package com.groom.orbit.schedule.application.dto;
 
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.groom.orbit.schedule.dao.Schedule;
+import com.groom.orbit.schedule.repository.jpa.entity.Schedule;
 
 public record GetScheduleResponseDto(
     Long scheduleId,

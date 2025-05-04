@@ -1,4 +1,4 @@
-package com.groom.orbit.schedule.app.dto;
+package com.groom.orbit.schedule.application.dto;
 
 import java.time.LocalDate;
 
