@@ -1,4 +1,4 @@
-package com.groom.orbit.config;
+package com.groom.orbit.config.infra.aws;
 
 import jakarta.annotation.PostConstruct;
 
