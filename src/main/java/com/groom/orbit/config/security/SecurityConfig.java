@@ -12,10 +12,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.groom.orbit.member.auth.application.entrypoint.JwtAuthenticationEntryPoint;
 import com.groom.orbit.member.auth.application.filter.JwtAuthExceptionHandlingFilter;
 import com.groom.orbit.member.auth.application.filter.JwtRequestFilter;
 import com.groom.orbit.member.auth.application.handler.JwtAccessDeniedHandler;
-import com.groom.orbit.member.auth.application.handler.JwtAuthenticationEntryPoint;
 
 import lombok.RequiredArgsConstructor;
 
