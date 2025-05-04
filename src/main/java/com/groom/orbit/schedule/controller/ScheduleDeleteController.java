@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.CommonSuccessDto;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.schedule.app.ScheduleCommandService;
+import com.groom.orbit.schedule.application.ScheduleCommandService;
 
 import lombok.RequiredArgsConstructor;
 

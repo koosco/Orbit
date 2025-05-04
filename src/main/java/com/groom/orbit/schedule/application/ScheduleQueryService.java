@@ -1,4 +1,4 @@
-package com.groom.orbit.schedule.app;
+package com.groom.orbit.schedule.application;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
 import com.groom.orbit.goal.quest.dao.QuestRepository;
-import com.groom.orbit.schedule.app.dto.GetCalendarResponseDto;
-import com.groom.orbit.schedule.app.dto.GetQuestResponseDto;
-import com.groom.orbit.schedule.app.dto.GetScheduleResponseDto;
-import com.groom.orbit.schedule.dao.Schedule;
-import com.groom.orbit.schedule.dao.ScheduleRepository;
+import com.groom.orbit.schedule.application.dto.GetCalendarResponseDto;
+import com.groom.orbit.schedule.application.dto.GetQuestResponseDto;
+import com.groom.orbit.schedule.application.dto.GetScheduleResponseDto;
+import com.groom.orbit.schedule.repository.jpa.ScheduleRepository;
+import com.groom.orbit.schedule.repository.jpa.entity.Schedule;
 
 import lombok.RequiredArgsConstructor;
 

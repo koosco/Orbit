@@ -1,9 +1,11 @@
-package com.groom.orbit.schedule.dao;
+package com.groom.orbit.schedule.repository.jpa;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.groom.orbit.schedule.repository.jpa.entity.Schedule;
 
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
