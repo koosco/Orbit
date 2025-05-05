@@ -12,7 +12,7 @@ import com.groom.orbit.common.exception.ErrorCode;
 import com.groom.orbit.member.auth.application.oauth.AuthToken;
 import com.groom.orbit.member.auth.application.oauth.kakao.KakaoReissueParams;
 import com.groom.orbit.member.auth.application.provider.JwtTokenProvider;
-import com.groom.orbit.member.member.repository.jpa.MemberRepository;
+import com.groom.orbit.member.member.application.MemberQueryService;
 import com.groom.orbit.member.member.repository.jpa.entity.Member;
 
 import lombok.RequiredArgsConstructor;
@@ -22,9 +22,9 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class TokenReissueService {
 
-  private final MemberRepository memberRepository;
   private final JwtTokenProvider jwtTokenProvider;
   private final RedisTemplate<String, String> redisTemplate;
+  private final MemberQueryService memberQueryService;
 
   @Value("${jwt.refresh-token-validity}")
   private Long refreshTokenValidityMilliseconds;
@@ -32,20 +32,12 @@ public class TokenReissueService {
   public AuthToken reissue(KakaoReissueParams params) {
 
     String refreshToken = params.getRefreshToken();
-
     Long memberId = jwtTokenProvider.parseRefreshToken(refreshToken);
 
-    if (!refreshToken.equals(redisTemplate.opsForValue().get(memberId.toString()))) {
-      throw new CommonException(ErrorCode.INVALID_TOKEN_ERROR);
-    }
+    validateRefreshToken(refreshToken, memberId);
 
-    Member member =
-        memberRepository
-            .findById(memberId)
-            .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_MEMBER));
-
+    Member member = memberQueryService.findMember(memberId);
     String newAccessToken = jwtTokenProvider.generateAccessToken(member.getId());
-
     String newRefreshToken = jwtTokenProvider.generateRefreshToken(member.getId());
 
     redisTemplate
@@ -57,5 +49,11 @@ public class TokenReissueService {
             TimeUnit.MILLISECONDS);
 
     return AuthToken.of(newAccessToken, newRefreshToken);
+  }
+
+  private void validateRefreshToken(String refreshToken, Long memberId) {
+    if (!refreshToken.equals(redisTemplate.opsForValue().get(memberId.toString()))) {
+      throw new CommonException(ErrorCode.INVALID_TOKEN_ERROR);
+    }
   }
 }

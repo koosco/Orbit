@@ -25,11 +25,7 @@ public class MemberQueryService {
   }
 
   public GetMemberProfileResponseDto getMemberProfile(Long memberId) {
-
-    Member member =
-        memberRepository
-            .findById(memberId)
-            .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_MEMBER));
+    Member member = findMember(memberId);
 
     return GetMemberProfileResponseDto.fromMember(member);
   }

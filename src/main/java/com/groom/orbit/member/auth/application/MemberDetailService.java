@@ -6,10 +6,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.groom.orbit.common.exception.CommonException;
-import com.groom.orbit.common.exception.ErrorCode;
 import com.groom.orbit.member.auth.application.domain.MemberDetails;
-import com.groom.orbit.member.member.repository.jpa.MemberRepository;
+import com.groom.orbit.member.member.application.MemberQueryService;
 import com.groom.orbit.member.member.repository.jpa.entity.Member;
 
 import lombok.RequiredArgsConstructor;
@@ -19,15 +17,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberDetailService implements UserDetailsService {
 
-  //  private final MemberRepository memberRepository;
-  private final MemberRepository authMemberRepository;
+  private final MemberQueryService memberQueryService;
 
   @Override
   public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-    Member member =
-        authMemberRepository
-            .findById(Long.parseLong(userId))
-            .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_MEMBER));
+    Member member = memberQueryService.findMember(Long.parseLong(userId));
 
     return new MemberDetails(member);
   }
