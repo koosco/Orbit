@@ -10,7 +10,6 @@ import com.groom.orbit.job.application.InterestJobService;
 import com.groom.orbit.job.application.dto.JobDetailResponseDto;
 import com.groom.orbit.member.member.application.dto.response.GetFeedbackResponseDto;
 import com.groom.orbit.member.member.application.dto.response.GetMemberAiFeedbackResponseDto;
-import com.groom.orbit.member.member.repository.jpa.MemberRepository;
 import com.groom.orbit.member.member.repository.jpa.entity.Member;
 import com.groom.orbit.resume.application.ResumeQueryService;
 import com.groom.orbit.resume.application.dto.GetResumeResponseDto;
@@ -25,10 +24,11 @@ public class FeedbackService {
   private final InterestJobService interestJobService;
   private final ResumeQueryService resumeQueryService;
   private final MemberQueryService memberQueryService;
-  private final MemberRepository memberRepository;
+
+  private static final String INTEREST_JOB_DELIMITER = ",";
 
   @Transactional
-  public GetFeedbackResponseDto getFeedback(Long memberId) {
+  public GetFeedbackResponseDto generateFeedback(Long memberId) {
     String interestJobs = getInterestJobs(memberId);
     GetResumeResponseDto dto = resumeQueryService.getMyResume(memberId);
 
@@ -39,17 +39,17 @@ public class FeedbackService {
     return aiResponse;
   }
 
-  public GetMemberAiFeedbackResponseDto getMemberAiFeedback(Long memberId) {
-    Member member = memberQueryService.findMember(memberId);
-
-    return GetMemberAiFeedbackResponseDto.fromMember(member);
-  }
-
   private String getInterestJobs(Long memberId) {
     List<String> jobs =
         interestJobService.findJobsByMemberId(memberId).stream()
             .map(JobDetailResponseDto::name)
             .toList();
-    return String.join(",", jobs);
+    return String.join(INTEREST_JOB_DELIMITER, jobs);
+  }
+
+  public GetMemberAiFeedbackResponseDto getMemberFeedback(Long memberId) {
+    Member member = memberQueryService.findMember(memberId);
+
+    return GetMemberAiFeedbackResponseDto.fromMember(member);
   }
 }
