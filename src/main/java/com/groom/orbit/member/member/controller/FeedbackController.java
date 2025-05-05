@@ -21,13 +21,12 @@ public class FeedbackController {
   private final FeedbackService feedbackService;
 
   @GetMapping
-  public ResponseDto<GetMemberAiFeedbackResponseDto> getMemberAiFeedback(
-      @AuthMember Long memberId) {
-    return ResponseDto.ok(feedbackService.getMemberAiFeedback(memberId));
+  public ResponseDto<GetMemberAiFeedbackResponseDto> getMemberFeedback(@AuthMember Long memberId) {
+    return ResponseDto.ok(feedbackService.getMemberFeedback(memberId));
   }
 
   @PostMapping
-  public ResponseDto<GetFeedbackResponseDto> getFeedback(@AuthMember Long memberId) {
-    return ResponseDto.ok(feedbackService.getFeedback(memberId));
+  public ResponseDto<GetFeedbackResponseDto> generateMemberFeedback(@AuthMember Long memberId) {
+    return ResponseDto.ok(feedbackService.generateFeedback(memberId));
   }
 }

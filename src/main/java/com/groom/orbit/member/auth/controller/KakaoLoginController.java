@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
-public class OAuthController {
+public class KakaoLoginController {
 
   private final OAuthService oAuthService;
 
