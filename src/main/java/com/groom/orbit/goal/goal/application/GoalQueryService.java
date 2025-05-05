@@ -1,4 +1,4 @@
-package com.groom.orbit.goal.goal.application.query;
+package com.groom.orbit.goal.goal.application;
 
 import java.util.Optional;
 
@@ -28,7 +28,6 @@ public class GoalQueryService {
   }
 
   public Optional<Goal> findGoalByTitleAndCategory(String title, String category) {
-
     return goalRepository.findByTitleAndCategory(title, GoalCategory.from(category));
   }
 

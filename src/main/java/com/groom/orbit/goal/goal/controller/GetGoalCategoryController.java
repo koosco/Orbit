@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.groom.orbit.common.dto.ResponseDto;
+import com.groom.orbit.goal.goal.application.GoalQueryService;
 import com.groom.orbit.goal.goal.application.dto.response.GetGoalCategoryResponseDto;
-import com.groom.orbit.goal.goal.application.query.GoalQueryService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.groom.orbit.goal.goal.application.command;
+package com.groom.orbit.goal.goal.application;
 
 import java.util.Optional;
 
@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class GoalCommandService {
+public class CreateGoalService {
 
   private final GoalRepository goalRepository;
 

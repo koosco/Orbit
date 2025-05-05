@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.goal.goal.application.command.GoalRecommendService;
+import com.groom.orbit.goal.goal.application.GoalRecommendService;
 import com.groom.orbit.goal.goal.application.dto.response.GetRecommendGoalListResponseDto;
 
 import lombok.RequiredArgsConstructor;

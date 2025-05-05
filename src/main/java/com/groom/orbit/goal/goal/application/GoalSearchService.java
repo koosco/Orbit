@@ -1,4 +1,4 @@
-package com.groom.orbit.goal.goal.application.query;
+package com.groom.orbit.goal.goal.application;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
+import com.groom.orbit.goal.goal.application.GoalSearchService;
 import com.groom.orbit.goal.goal.application.dto.response.GoalSearchDetailResponseDto;
 import com.groom.orbit.goal.goal.application.dto.response.GoalSearchResponseDto;
-import com.groom.orbit.goal.goal.application.query.GoalSearchService;
 
 import lombok.RequiredArgsConstructor;
 
