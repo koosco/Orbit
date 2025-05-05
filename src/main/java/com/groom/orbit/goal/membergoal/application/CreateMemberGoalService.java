@@ -1,15 +1,13 @@
 package com.groom.orbit.goal.membergoal.application;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.groom.orbit.goal.goal.application.command.GoalCommandService;
+import com.groom.orbit.goal.goal.application.GoalResolver;
 import com.groom.orbit.goal.goal.application.dto.request.MemberGoalRequestDto;
 import com.groom.orbit.goal.goal.application.dto.response.GetMemberGoalResponseDto;
-import com.groom.orbit.goal.goal.application.query.GoalQueryService;
 import com.groom.orbit.goal.goal.repository.MemberGoalRepository;
 import com.groom.orbit.goal.goal.repository.entity.Goal;
 import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
@@ -28,15 +26,14 @@ import lombok.RequiredArgsConstructor;
 public class CreateMemberGoalService {
 
   private final MemberQueryService memberQueryService;
-  private final GoalQueryService goalQueryService;
-  private final GoalCommandService goalCommandService;
   private final VectorService vectorService;
+  private final GoalResolver goalResolver;
 
   private final MemberGoalRepository memberGoalRepository;
 
   public GetMemberGoalResponseDto createGoal(Long memberId, MemberGoalRequestDto dto) {
     Member member = memberQueryService.findMember(memberId);
-    Goal goal = findGoal(dto.title(), dto.category());
+    Goal goal = goalResolver.findOrCreateGoal(dto.title(), dto.category());
     int memberGoalSize = memberGoalRepository.findAllByMemberIdAndIsCompleteFalse(memberId).size();
 
     MemberGoal memberGoal = MemberGoal.create(member, goal, memberGoalSize);
@@ -77,11 +74,5 @@ public class CreateMemberGoalService {
     CreateVectorDto vectorDto =
         CreateVectorDto.builder().memberId(memberId).goals(goalTitles).quests(questTitles).build();
     vectorService.save(vectorDto);
-  }
-
-  private Goal findGoal(String title, String category) {
-    Optional<Goal> findGoal = goalQueryService.findGoalByTitleAndCategory(title, category);
-
-    return findGoal.orElseGet(() -> goalCommandService.createGoal(title, category));
   }
 }
