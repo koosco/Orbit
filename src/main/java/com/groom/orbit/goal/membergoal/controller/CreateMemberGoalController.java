@@ -9,7 +9,7 @@ import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
 import com.groom.orbit.goal.goal.application.dto.request.MemberGoalRequestDto;
 import com.groom.orbit.goal.goal.application.dto.response.GetMemberGoalResponseDto;
-import com.groom.orbit.goal.membergoal.application.MemberGoalService;
+import com.groom.orbit.goal.membergoal.application.CreateMemberGoalService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,11 +18,11 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/goal")
 public class CreateMemberGoalController {
 
-  private final MemberGoalService memberGoalService;
+  private final CreateMemberGoalService createMemberGoalService;
 
   @PostMapping
   public ResponseDto<GetMemberGoalResponseDto> createMemberGoal(
       @AuthMember Long memberId, @RequestBody MemberGoalRequestDto dto) {
-    return ResponseDto.created(memberGoalService.createGoal(memberId, dto));
+    return ResponseDto.created(createMemberGoalService.createGoal(memberId, dto));
   }
 }

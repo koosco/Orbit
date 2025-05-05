@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.groom.orbit.common.dto.CommonSuccessDto;
 import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
-import com.groom.orbit.goal.membergoal.application.MemberGoalService;
+import com.groom.orbit.goal.membergoal.application.MemberGoalQueryService;
 import com.groom.orbit.member.member.application.MemberQueryService;
 import com.groom.orbit.member.member.repository.jpa.entity.Member;
 import com.groom.orbit.resume.application.dto.ResumeRequestDto;
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class ResumeCreateService {
 
   private final MemberQueryService memberQueryService;
-  private final MemberGoalService memberGoalService;
+  private final MemberGoalQueryService memberGoalQueryService;
 
   private final ResumeRepository resumeRepository;
 
@@ -35,7 +35,7 @@ public class ResumeCreateService {
 
   public ResumeResponseDto createResumeFromMemberGoal(
       Long memberId, Long memberGoalId, ResumeRequestDto requestDto) {
-    MemberGoal memberGoal = memberGoalService.findByMemberIdAndId(memberId, memberGoalId);
+    MemberGoal memberGoal = memberGoalQueryService.findByMemberIdAndId(memberId, memberGoalId);
     Member member = memberGoal.getMember();
     Resume resume = requestDto.toResume(member);
 

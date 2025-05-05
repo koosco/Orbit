@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.CommonSuccessDto;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.goal.membergoal.application.MemberGoalService;
+import com.groom.orbit.goal.membergoal.application.DeleteMemberGoalService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,11 +17,11 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/goal")
 public class DeleteMemberGoalController {
 
-  private final MemberGoalService memberGoalService;
+  private final DeleteMemberGoalService deleteMemberGoalService;
 
   @DeleteMapping("/{member_goal_id}")
   public ResponseDto<CommonSuccessDto> deleteMemberGoal(
       @AuthMember Long memberId, @PathVariable("member_goal_id") Long memberGoalId) {
-    return ResponseDto.ok(memberGoalService.deleteMemberGoal(memberId, memberGoalId));
+    return ResponseDto.ok(deleteMemberGoalService.deleteMemberGoal(memberId, memberGoalId));
   }
 }

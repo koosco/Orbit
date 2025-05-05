@@ -11,11 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
 import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
-import com.groom.orbit.goal.membergoal.application.MemberGoalService;
+import com.groom.orbit.goal.membergoal.application.MemberGoalQueryService;
 import com.groom.orbit.goal.quest.application.dto.response.GetQuestResponseDto;
 import com.groom.orbit.goal.quest.repository.QuestRepository;
 import com.groom.orbit.goal.quest.repository.entity.Quest;
-import com.groom.orbit.infra.fcm.FcmService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,9 +23,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuestQueryService {
 
+  private final MemberGoalQueryService memberGoalQueryService;
+
   private final QuestRepository questRepository;
-  private final MemberGoalService memberGoalService;
-  private final FcmService fcmService;
 
   public Quest findQuest(Long questId) {
     return questRepository
@@ -57,11 +56,12 @@ public class QuestQueryService {
   }
 
   public List<String> getRecommendedQuests(Long memberGoalId) {
-    MemberGoal memberGoal = memberGoalService.findMemberGoal(memberGoalId);
+    MemberGoal memberGoal = memberGoalQueryService.findMemberGoal(memberGoalId);
     Set<Quest> myQuests = new HashSet<>(memberGoal.getQuests());
 
     List<MemberGoal> memberGoals =
-        memberGoalService.findMemberGoalsByGoalId(memberGoal.getGoal().getGoalId()); // goals 조회
+        memberGoalQueryService.findMemberGoalsByGoalId(
+            memberGoal.getGoal().getGoalId()); // goals 조회
     Set<Quest> quests =
         memberGoals.stream()
             .map(MemberGoal::getQuests)

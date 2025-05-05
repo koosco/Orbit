@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
 import com.groom.orbit.goal.goal.application.dto.response.GetMemberGoalResponseDto;
-import com.groom.orbit.goal.membergoal.application.MemberGoalService;
+import com.groom.orbit.goal.membergoal.application.CopyOtherMemberGoalService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,11 +17,11 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/goal")
 public class CopyMemberGoalController {
 
-  private final MemberGoalService memberGoalService;
+  private final CopyOtherMemberGoalService copyOtherMemberGoalService;
 
   @PostMapping("/copy/{member_goal_id}")
   public ResponseDto<GetMemberGoalResponseDto> copyMemberGoal(
       @AuthMember Long memberId, @PathVariable("member_goal_id") Long otherMemberGoalId) {
-    return ResponseDto.ok(memberGoalService.createOtherGoal(memberId, otherMemberGoalId));
+    return ResponseDto.ok(copyOtherMemberGoalService.createOtherGoal(memberId, otherMemberGoalId));
   }
 }
