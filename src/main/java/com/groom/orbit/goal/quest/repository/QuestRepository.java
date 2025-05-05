@@ -13,22 +13,11 @@ import com.groom.orbit.member.member.repository.jpa.entity.Member;
 public interface QuestRepository extends JpaRepository<Quest, Long> {
 
   @Query(
-      "select q from Quest q"
-          + " join fetch q.memberGoal mg"
-          + " join fetch mg.goal g"
-          + " join fetch mg.member m"
-          + " where m.id=:member_id and mg.memberGoalId=:goal_id")
-  List<Quest> findByMemberIdAndMemberGoalId(
-      @Param("member_id") Long memberId, @Param("goal_id") Long goalId);
-
-  @Query(
       "select count(*) from Quest q"
           + " join q.memberGoal mg"
           + " join mg.goal g"
           + " where g.goalId=:goal_id")
   int getCountByGoalId(@Param("goal_id") Long goalId);
-
-  List<Quest> findByQuestIdIn(List<Long> ids);
 
   @Query(
       "SELECT q FROM Quest q join fetch q.memberGoal mg join fetch mg.member m WHERE YEAR(q.deadline) = :year AND MONTH(q.deadline) = :month AND q.deadline is not null AND m.id = :memberId ORDER BY q.deadline ASC")
