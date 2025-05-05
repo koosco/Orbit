@@ -8,11 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.groom.orbit.common.dto.CommonSuccessDto;
-import com.groom.orbit.common.exception.CommonException;
-import com.groom.orbit.common.exception.ErrorCode;
 import com.groom.orbit.goal.goal.application.command.GoalCommandService;
 import com.groom.orbit.goal.goal.application.dto.request.MemberGoalRequestDto;
-import com.groom.orbit.goal.goal.application.dto.request.UpdateMemberGoalSequenceRequestDto;
 import com.groom.orbit.goal.goal.application.query.GoalQueryService;
 import com.groom.orbit.goal.goal.repository.MemberGoalRepository;
 import com.groom.orbit.goal.goal.repository.entity.Goal;
@@ -29,13 +26,14 @@ public class UpdateMemberGoalService {
 
   private final GoalQueryService goalQueryService;
   private final GoalCommandService goalCommandService;
+  private final MemberGoalQueryService memberGoalQueryService;
   private final VectorService vectorService;
 
   private final MemberGoalRepository memberGoalRepository;
 
   public CommonSuccessDto updateMemberGoal(
       Long memberId, Long memberGoalId, MemberGoalRequestDto dto) {
-    MemberGoal memberGoal = findMemberGoal(memberGoalId);
+    MemberGoal memberGoal = memberGoalQueryService.findMemberGoal(memberGoalId);
     Goal goal = findGoal(dto.title(), dto.category());
     memberGoal.validateMember(memberId);
 
@@ -45,27 +43,9 @@ public class UpdateMemberGoalService {
     return new CommonSuccessDto(true);
   }
 
-  public CommonSuccessDto updateMemberGoalSequence(
-      Long memberId, List<UpdateMemberGoalSequenceRequestDto> requestDtoList) {
-
-    List<MemberGoal> memberGoalList =
-        memberGoalRepository.findAllByMemberIdAndIsCompleteFalse(memberId);
-
-    for (UpdateMemberGoalSequenceRequestDto dto : requestDtoList) {
-      memberGoalList.stream()
-          .filter(memberGoal -> memberGoal.getMemberGoalId().equals(dto.memberGoalId()))
-          .findFirst()
-          .ifPresent(memberGoal -> memberGoal.setSequence(dto.sequence()));
-    }
-
-    memberGoalRepository.saveAll(memberGoalList);
-
-    return CommonSuccessDto.fromEntity(true);
-  }
-
   public CommonSuccessDto updateMemberGoalIsComplete(Long memberId, Long memberGoalId) {
 
-    MemberGoal memberGoal = findMemberGoal(memberGoalId);
+    MemberGoal memberGoal = memberGoalQueryService.findMemberGoal(memberGoalId);
 
     memberGoal.setIsComplete(true);
     memberGoal.setCompletedDate(LocalDateTime.now());
@@ -80,14 +60,6 @@ public class UpdateMemberGoalService {
     memberGoalRepository.saveAll(memberGoalList);
 
     return CommonSuccessDto.fromEntity(true);
-  }
-
-  @Transactional(readOnly = true)
-  public MemberGoal findMemberGoal(Long memberGoalId) {
-
-    return memberGoalRepository
-        .findById(memberGoalId)
-        .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_GOAL));
   }
 
   private Goal findGoal(String title, String category) {
