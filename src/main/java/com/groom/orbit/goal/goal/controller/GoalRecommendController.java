@@ -1,4 +1,4 @@
-package com.groom.orbit.goal.goal.controller.command;
+package com.groom.orbit.goal.goal.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

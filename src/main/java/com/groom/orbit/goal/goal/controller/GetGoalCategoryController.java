@@ -1,4 +1,4 @@
-package com.groom.orbit.goal.goal.controller.query;
+package com.groom.orbit.goal.goal.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/goal")
-public class GoalQueryController {
+public class GetGoalCategoryController {
 
   private final GoalQueryService goalQueryService;
 

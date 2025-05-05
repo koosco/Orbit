@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.groom.orbit.goal.goal.application.MemberGoalService;
 import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
+import com.groom.orbit.goal.membergoal.application.MemberGoalService;
 import com.groom.orbit.goal.quest.application.dto.request.CreateQuestRequestDto;
 import com.groom.orbit.goal.quest.application.dto.response.CreateQuestResponse;
 import com.groom.orbit.goal.quest.repository.QuestRepository;

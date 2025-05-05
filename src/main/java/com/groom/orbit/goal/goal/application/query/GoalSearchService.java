@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
-import com.groom.orbit.goal.goal.application.MemberGoalService;
 import com.groom.orbit.goal.goal.application.dto.response.GoalSearchDetailResponseDto;
 import com.groom.orbit.goal.goal.application.dto.response.GoalSearchResponseDto;
 import com.groom.orbit.goal.goal.repository.entity.Goal;
 import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
+import com.groom.orbit.goal.membergoal.application.MemberGoalService;
 import com.groom.orbit.goal.quest.repository.entity.Quest;
 import com.groom.orbit.job.application.InterestJobService;
 
