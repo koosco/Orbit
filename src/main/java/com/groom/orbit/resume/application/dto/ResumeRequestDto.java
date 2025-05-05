@@ -2,7 +2,7 @@ package com.groom.orbit.resume.application.dto;
 
 import java.time.LocalDate;
 
-import com.groom.orbit.member.member.dao.jpa.entity.Member;
+import com.groom.orbit.member.member.repository.jpa.entity.Member;
 import com.groom.orbit.resume.repository.entity.Resume;
 import com.groom.orbit.resume.repository.entity.ResumeCategory;
 

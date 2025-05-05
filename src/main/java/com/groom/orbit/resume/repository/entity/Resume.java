@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.groom.orbit.goal.goal.dao.entity.MemberGoal;
-import com.groom.orbit.member.member.dao.jpa.entity.Member;
+import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
+import com.groom.orbit.member.member.repository.jpa.entity.Member;
 import com.groom.orbit.resume.application.dto.ResumeRequestDto;
 
 import lombok.*;

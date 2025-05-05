@@ -8,11 +8,11 @@ import java.util.List;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import com.groom.orbit.goal.goal.dao.entity.MemberGoal;
-import com.groom.orbit.goal.quest.dao.QuestRepository;
-import com.groom.orbit.goal.quest.dao.entity.Quest;
-import com.groom.orbit.member.member.dao.jpa.MemberRepository;
-import com.groom.orbit.member.member.dao.jpa.entity.Member;
+import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
+import com.groom.orbit.goal.quest.repository.QuestRepository;
+import com.groom.orbit.goal.quest.repository.entity.Quest;
+import com.groom.orbit.member.member.repository.jpa.MemberRepository;
+import com.groom.orbit.member.member.repository.jpa.entity.Member;
 
 import lombok.RequiredArgsConstructor;
 

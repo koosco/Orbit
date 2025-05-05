@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.goal.goal.app.dto.response.GoalSearchDetailResponseDto;
-import com.groom.orbit.goal.goal.app.dto.response.GoalSearchResponseDto;
-import com.groom.orbit.goal.goal.app.query.GoalSearchService;
+import com.groom.orbit.goal.goal.application.dto.response.GoalSearchDetailResponseDto;
+import com.groom.orbit.goal.goal.application.dto.response.GoalSearchResponseDto;
+import com.groom.orbit.goal.goal.application.query.GoalSearchService;
 
 import lombok.RequiredArgsConstructor;
 

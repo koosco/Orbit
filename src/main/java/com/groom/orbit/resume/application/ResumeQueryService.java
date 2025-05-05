@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.groom.orbit.common.exception.CommonException;
 import com.groom.orbit.common.exception.ErrorCode;
-import com.groom.orbit.member.member.app.MemberQueryService;
-import com.groom.orbit.member.member.dao.jpa.entity.Member;
+import com.groom.orbit.member.member.application.MemberQueryService;
+import com.groom.orbit.member.member.repository.jpa.entity.Member;
 import com.groom.orbit.resume.application.dto.GetOtherResumeResponseDto;
 import com.groom.orbit.resume.application.dto.GetResumeResponseDto;
 import com.groom.orbit.resume.application.dto.ResumeResponseDto;

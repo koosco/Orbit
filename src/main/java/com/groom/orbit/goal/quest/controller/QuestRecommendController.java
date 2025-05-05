@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.goal.quest.app.QuestRecommendService;
-import com.groom.orbit.goal.quest.app.dto.response.RecommendQuestListResponseDto;
+import com.groom.orbit.goal.quest.application.QuestRecommendService;
+import com.groom.orbit.goal.quest.application.dto.response.RecommendQuestListResponseDto;
 
 import lombok.RequiredArgsConstructor;
 

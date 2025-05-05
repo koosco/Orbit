@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.CommonSuccessDto;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.job.app.JobCommandService;
-import com.groom.orbit.job.app.dto.InterestJobRequestDto;
+import com.groom.orbit.job.application.JobCommandService;
+import com.groom.orbit.job.application.dto.InterestJobRequestDto;
 
 import lombok.RequiredArgsConstructor;
 
