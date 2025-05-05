@@ -1,4 +1,4 @@
-package com.groom.orbit.goal.goal.controller.command;
+package com.groom.orbit.goal.membergoal.controller;
 
 import java.util.List;
 
@@ -7,31 +7,18 @@ import org.springframework.web.bind.annotation.*;
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.CommonSuccessDto;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.goal.goal.application.MemberGoalService;
 import com.groom.orbit.goal.goal.application.dto.request.MemberGoalRequestDto;
 import com.groom.orbit.goal.goal.application.dto.request.UpdateMemberGoalSequenceRequestDto;
-import com.groom.orbit.goal.goal.application.dto.response.GetMemberGoalResponseDto;
+import com.groom.orbit.goal.membergoal.application.MemberGoalService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/goal")
-public class MemberGoalCommandController {
+public class UpdateMemberGoalController {
 
   private final MemberGoalService memberGoalService;
-
-  @DeleteMapping("/{member_goal_id}")
-  public ResponseDto<CommonSuccessDto> deleteMemberGoal(
-      @AuthMember Long memberId, @PathVariable("member_goal_id") Long memberGoalId) {
-    return ResponseDto.ok(memberGoalService.deleteMemberGoal(memberId, memberGoalId));
-  }
-
-  @PostMapping
-  public ResponseDto<GetMemberGoalResponseDto> createMemberGoal(
-      @AuthMember Long memberId, @RequestBody MemberGoalRequestDto dto) {
-    return ResponseDto.created(memberGoalService.createGoal(memberId, dto));
-  }
 
   @PatchMapping("/{member_goal_id}")
   public ResponseDto<CommonSuccessDto> updateMemberGoal(
@@ -52,11 +39,5 @@ public class MemberGoalCommandController {
   public ResponseDto<CommonSuccessDto> updateMemberGoalIsComplete(
       @AuthMember Long memberId, @PathVariable("member_goal_id") Long memberGoalId) {
     return ResponseDto.ok(memberGoalService.updateMemberGoalIsComplete(memberId, memberGoalId));
-  }
-
-  @PostMapping("/copy/{member_goal_id}")
-  public ResponseDto<GetMemberGoalResponseDto> copyMemberGoal(
-      @AuthMember Long memberId, @PathVariable("member_goal_id") Long otherMemberGoalId) {
-    return ResponseDto.ok(memberGoalService.createOtherGoal(memberId, otherMemberGoalId));
   }
 }

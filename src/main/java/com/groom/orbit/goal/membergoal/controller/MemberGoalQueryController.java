@@ -1,17 +1,13 @@
-package com.groom.orbit.goal.goal.controller.query;
+package com.groom.orbit.goal.membergoal.controller;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
-import com.groom.orbit.goal.goal.application.MemberGoalService;
 import com.groom.orbit.goal.goal.application.dto.response.GetMemberGoalResponseDto;
+import com.groom.orbit.goal.membergoal.application.MemberGoalService;
 
 import lombok.RequiredArgsConstructor;
 

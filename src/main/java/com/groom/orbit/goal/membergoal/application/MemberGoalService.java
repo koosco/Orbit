@@ -1,4 +1,4 @@
-package com.groom.orbit.goal.goal.application;
+package com.groom.orbit.goal.membergoal.application;
 
 import java.time.LocalDateTime;
 import java.util.List;
