@@ -25,7 +25,7 @@ public class GoalSearchController {
   @GetMapping("/{goal_id}")
   public ResponseDto<GoalSearchDetailResponseDto> getSearchDetail(
       @PathVariable("goal_id") Long goalId) {
-    return ResponseDto.ok(goalSearchService.findGoal(goalId));
+    return ResponseDto.ok(goalSearchService.searchGoalByGoalId(goalId));
   }
 
   @GetMapping

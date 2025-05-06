@@ -29,7 +29,8 @@ public class QuestCreateService {
 
   /** TODO join 최적화 */
   public CreateQuestResponse createQuest(Long memberId, CreateQuestRequestDto dto) {
-    MemberGoal memberGoal = memberGoalQueryService.findMemberGoal(memberId, dto.goalId());
+    MemberGoal memberGoal =
+        memberGoalQueryService.findMemberGoalByMemberIdAndGoalId(memberId, dto.goalId());
     memberGoal.validateMember(memberId);
 
     int newQuestSequence = questQueryService.getQuestCountsByGoalId(dto.goalId()) + 1;

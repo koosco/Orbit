@@ -30,7 +30,7 @@ public class UpdateMemberGoalService {
 
   public CommonSuccessDto updateMemberGoal(
       Long memberId, Long memberGoalId, MemberGoalRequestDto dto) {
-    MemberGoal memberGoal = memberGoalQueryService.findMemberGoal(memberGoalId);
+    MemberGoal memberGoal = memberGoalQueryService.findMemberGoalById(memberGoalId);
     Goal goal = goalResolver.findOrCreateGoal(dto.title(), dto.category());
     memberGoal.validateMember(memberId);
 
@@ -42,7 +42,7 @@ public class UpdateMemberGoalService {
 
   public CommonSuccessDto updateMemberGoalIsComplete(Long memberId, Long memberGoalId) {
 
-    MemberGoal memberGoal = memberGoalQueryService.findMemberGoal(memberGoalId);
+    MemberGoal memberGoal = memberGoalQueryService.findMemberGoalById(memberGoalId);
 
     memberGoal.setIsComplete(true);
     memberGoal.setCompletedDate(LocalDateTime.now());

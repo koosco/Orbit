@@ -56,7 +56,7 @@ public class QuestQueryService {
   }
 
   public List<String> getRecommendedQuests(Long memberGoalId) {
-    MemberGoal memberGoal = memberGoalQueryService.findMemberGoal(memberGoalId);
+    MemberGoal memberGoal = memberGoalQueryService.findMemberGoalById(memberGoalId);
     Set<Quest> myQuests = new HashSet<>(memberGoal.getQuests());
 
     List<MemberGoal> memberGoals =

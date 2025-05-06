@@ -35,7 +35,8 @@ public class ResumeCreateService {
 
   public ResumeResponseDto createResumeFromMemberGoal(
       Long memberId, Long memberGoalId, ResumeRequestDto requestDto) {
-    MemberGoal memberGoal = memberGoalQueryService.findByMemberIdAndId(memberId, memberGoalId);
+    MemberGoal memberGoal =
+        memberGoalQueryService.findByMemberGoalByMemberIdAndMemberGoalId(memberId, memberGoalId);
     Member member = memberGoal.getMember();
     Resume resume = requestDto.toResume(member);
 

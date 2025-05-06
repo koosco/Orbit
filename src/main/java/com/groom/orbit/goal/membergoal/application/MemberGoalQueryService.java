@@ -10,8 +10,6 @@ import com.groom.orbit.common.exception.ErrorCode;
 import com.groom.orbit.goal.goal.application.dto.response.GetMemberGoalResponseDto;
 import com.groom.orbit.goal.goal.repository.MemberGoalRepository;
 import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
-import com.groom.orbit.goal.quest.application.dto.response.GetQuestResponseDto;
-import com.groom.orbit.goal.quest.repository.entity.Quest;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,25 +20,29 @@ public class MemberGoalQueryService {
 
   private final MemberGoalRepository memberGoalRepository;
 
-  public MemberGoal findMemberGoal(Long memberGoalId) {
+  public MemberGoal findMemberGoalById(Long memberGoalId) {
     return memberGoalRepository
         .findById(memberGoalId)
         .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_GOAL));
   }
 
-  public MemberGoal findMemberGoal(Long memberId, Long goalId) {
+  public List<MemberGoal> findAllMemberGoal(Long goalId) {
+    return memberGoalRepository.findAllWithQuestsByGoalId(goalId);
+  }
+
+  public MemberGoal findMemberGoalByMemberIdAndGoalId(Long memberId, Long goalId) {
     return memberGoalRepository
         .findById(memberId, goalId)
         .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_GOAL));
   }
 
-  public MemberGoal findByMemberIdAndId(Long memberId, Long memberGoalId) {
+  public MemberGoal findByMemberGoalByMemberIdAndMemberGoalId(Long memberId, Long memberGoalId) {
     return memberGoalRepository
         .findById(memberId, memberGoalId)
         .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_MEMBER_GOAL));
   }
 
-  public List<GetMemberGoalResponseDto> findGoals(Long memberId, Boolean isComplete) {
+  public List<GetMemberGoalResponseDto> findMemberGoals(Long memberId, Boolean isComplete) {
     if (isComplete == null) {
       isComplete = false;
     }
@@ -48,56 +50,12 @@ public class MemberGoalQueryService {
     List<MemberGoal> memberGoals =
         memberGoalRepository.findByMemberIdAndIsComplete(memberId, isComplete);
 
-    return memberGoals.stream()
-        .map(
-            memberGoal ->
-                new GetMemberGoalResponseDto(
-                    memberGoal.getMemberGoalId(),
-                    memberGoal.getTitle(),
-                    memberGoal.getGoal().getCategory(),
-                    memberGoal.getIsComplete(),
-                    memberGoal.getSequence(),
-                    memberGoal.getIsResume(),
-                    memberGoal.getCreatedAt().toLocalDate(),
-                    memberGoal.getCompletedDate().toLocalDate(),
-                    getGetQuestResponseDtos(memberGoal)))
-        .toList();
-  }
-
-  private static List<GetQuestResponseDto> getGetQuestResponseDtos(MemberGoal mg) {
-    return mg.getQuests().stream()
-        .map(
-            q ->
-                new GetQuestResponseDto(
-                    q.getQuestId(), q.getTitle(), q.getDeadline(), q.getIsComplete()))
-        .toList();
+    return memberGoals.stream().map(GetMemberGoalResponseDto::from).toList();
   }
 
   public GetMemberGoalResponseDto findGoal(Long memberGoalId) {
-    MemberGoal memberGoal = findMemberGoal(memberGoalId);
-    List<Quest> quests = memberGoal.getQuests();
-
-    List<GetQuestResponseDto> questDtos =
-        quests.stream()
-            .map(
-                quest ->
-                    new GetQuestResponseDto(
-                        quest.getQuestId(),
-                        quest.getTitle(),
-                        quest.getDeadline(),
-                        quest.getIsComplete()))
-            .toList();
-
-    return new GetMemberGoalResponseDto(
-        memberGoal.getMemberGoalId(),
-        memberGoal.getTitle(),
-        memberGoal.getGoal().getCategory(),
-        memberGoal.getIsComplete(),
-        memberGoal.getSequence(),
-        memberGoal.getIsResume(),
-        memberGoal.getCreatedAt().toLocalDate(),
-        memberGoal.getCompletedDate().toLocalDate(),
-        questDtos);
+    MemberGoal memberGoal = findMemberGoalById(memberGoalId);
+    return GetMemberGoalResponseDto.from(memberGoal);
   }
 
   public List<MemberGoal> findMemberGoalsByGoalId(Long goalId) {

@@ -19,7 +19,7 @@ public class DeleteMemberGoalService {
   private final MemberGoalQueryService memberGoalQueryService;
 
   public CommonSuccessDto deleteMemberGoal(Long memberId, Long memberGoalId) {
-    MemberGoal memberGoal = memberGoalQueryService.findMemberGoal(memberGoalId);
+    MemberGoal memberGoal = memberGoalQueryService.findMemberGoalById(memberGoalId);
 
     memberGoal.validateMember(memberId);
     Goal goal = memberGoal.getGoal();

@@ -2,15 +2,7 @@ package com.groom.orbit.goal.quest.repository.entity;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -18,12 +10,15 @@ import com.groom.orbit.common.repository.entity.BaseTimeEntity;
 import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
 import com.groom.orbit.member.member.repository.jpa.entity.Member;
 
-import lombok.Getter;
+import lombok.*;
 
 @Entity
 @Getter
+@Builder(access = AccessLevel.PRIVATE)
 @DynamicUpdate
 @Table(name = "quest")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Quest extends BaseTimeEntity {
 
   @Id
@@ -41,23 +36,27 @@ public class Quest extends BaseTimeEntity {
 
   private Integer sequence;
 
+  @Setter
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "member_goal_id")
   private MemberGoal memberGoal;
 
   public static Quest create(
       String title, MemberGoal memberGoal, LocalDate deadline, int newSequence) {
-    Quest quest = copyQuest(title, memberGoal);
-    quest.sequence = newSequence;
-    quest.deadline = deadline;
+    Quest quest =
+        Quest.builder()
+            .title(title)
+            .memberGoal(memberGoal)
+            .deadline(deadline)
+            .sequence(newSequence)
+            .build();
+    memberGoal.getQuests().add(quest);
 
     return quest;
   }
 
   public static Quest copyQuest(String title, MemberGoal memberGoal) {
-    Quest quest = new Quest();
-    quest.title = title;
-    quest.memberGoal = memberGoal;
+    Quest quest = Quest.builder().title(title).memberGoal(memberGoal).build();
     memberGoal.getQuests().add(quest);
 
     return quest;
