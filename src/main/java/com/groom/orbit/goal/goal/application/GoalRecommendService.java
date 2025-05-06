@@ -1,4 +1,4 @@
-package com.groom.orbit.goal.goal.application.command;
+package com.groom.orbit.goal.goal.application;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -18,14 +18,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GoalRecommendService {
 
-  private final GoalCommandService goalCommandService;
+  private final CreateGoalService createGoalService;
   private final AiService aiService;
 
   public GetRecommendGoalListResponseDto createRecommendGoal(Long memberId) {
     RecommendGoalListResponseDto dtos = aiService.recommendGoal(memberId);
     List<Goal> newGoals =
         dtos.items().stream()
-            .map(dto -> goalCommandService.upsert(dto.title(), dto.category()))
+            .map(dto -> createGoalService.upsert(dto.title(), dto.category()))
             .toList();
 
     return new GetRecommendGoalListResponseDto(convertToDto(newGoals, dtos));

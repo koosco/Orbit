@@ -1,21 +1,17 @@
-package com.groom.orbit.goal.goal.controller.query;
+package com.groom.orbit.goal.goal.controller;
 
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.groom.orbit.common.annotation.AuthMember;
 import com.groom.orbit.common.dto.ResponseDto;
+import com.groom.orbit.goal.goal.application.GoalSearchService;
 import com.groom.orbit.goal.goal.application.dto.response.GoalSearchDetailResponseDto;
 import com.groom.orbit.goal.goal.application.dto.response.GoalSearchResponseDto;
-import com.groom.orbit.goal.goal.application.query.GoalSearchService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +25,7 @@ public class GoalSearchController {
   @GetMapping("/{goal_id}")
   public ResponseDto<GoalSearchDetailResponseDto> getSearchDetail(
       @PathVariable("goal_id") Long goalId) {
-    return ResponseDto.ok(goalSearchService.findGoal(goalId));
+    return ResponseDto.ok(goalSearchService.searchGoalByGoalId(goalId));
   }
 
   @GetMapping

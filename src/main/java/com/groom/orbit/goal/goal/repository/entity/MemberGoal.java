@@ -4,17 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
@@ -27,12 +17,14 @@ import lombok.*;
 
 @Entity
 @Getter
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicUpdate
 @Table(name = "member_goal")
 public class MemberGoal extends BaseTimeEntity {
+
+  private static final LocalDateTime DEFAULT_COMPLETED_TIME = LocalDateTime.of(2000, 12, 31, 0, 0);
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,7 +50,7 @@ public class MemberGoal extends BaseTimeEntity {
 
   @Setter
   @Column(name = "completed_date")
-  private LocalDateTime completedDate = LocalDateTime.of(2000, 12, 31, 00, 00);
+  private LocalDateTime completedDate = DEFAULT_COMPLETED_TIME;
 
   @ColumnDefault("false")
   @Column(name = "is_resume")
@@ -68,11 +60,30 @@ public class MemberGoal extends BaseTimeEntity {
   private List<Quest> quests = new ArrayList<>();
 
   public static MemberGoal create(Member member, Goal goal, int memberGoalSize) {
-    MemberGoal memberGoal = new MemberGoal();
-    memberGoal.member = member;
-    memberGoal.goal = goal;
-    memberGoal.sequence = memberGoalSize + 1;
     goal.increaseCount();
+    return MemberGoal.builder().member(member).goal(goal).sequence(memberGoalSize + 1).build();
+  }
+
+  public static MemberGoal copyMemberGoal(
+      MemberGoal originalMemberGoal, Member member, Goal goal, Integer memberGoalSize) {
+    MemberGoal memberGoal =
+        MemberGoal.builder()
+            .member(member)
+            .goal(goal)
+            .isComplete(false)
+            .sequence(memberGoalSize + 1)
+            .isResume(false)
+            .completedDate(DEFAULT_COMPLETED_TIME)
+            .build();
+
+    originalMemberGoal
+        .getQuests()
+        .forEach(
+            originalQuest -> {
+              Quest copiedQuest = Quest.copyQuest(originalQuest.getTitle(), memberGoal);
+              memberGoal.getQuests().add(copiedQuest);
+              copiedQuest.setMemberGoal(originalMemberGoal);
+            });
 
     return memberGoal;
   }
@@ -89,17 +100,6 @@ public class MemberGoal extends BaseTimeEntity {
 
   public void validateMember(Long memberId) {
     this.member.validateId(memberId);
-  }
-
-  public MemberGoal copyMemberGoal(Member member, Goal goal, Integer memberGoalLen) {
-    return MemberGoal.builder()
-        .member(member)
-        .goal(goal)
-        .isComplete(false)
-        .sequence(memberGoalLen + 1)
-        .isResume(false)
-        .completedDate(this.completedDate)
-        .build();
   }
 
   public void deleteResume() {

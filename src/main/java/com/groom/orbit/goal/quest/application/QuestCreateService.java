@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.groom.orbit.goal.goal.application.MemberGoalService;
 import com.groom.orbit.goal.goal.repository.entity.MemberGoal;
+import com.groom.orbit.goal.membergoal.application.MemberGoalQueryService;
 import com.groom.orbit.goal.quest.application.dto.request.CreateQuestRequestDto;
 import com.groom.orbit.goal.quest.application.dto.response.CreateQuestResponse;
 import com.groom.orbit.goal.quest.repository.QuestRepository;
@@ -21,14 +21,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuestCreateService {
 
-  private final MemberGoalService memberGoalService;
+  private final MemberGoalQueryService memberGoalQueryService;
   private final QuestQueryService questQueryService;
-  private final QuestRepository questRepository;
   private final VectorService vectorService;
+
+  private final QuestRepository questRepository;
 
   /** TODO join 최적화 */
   public CreateQuestResponse createQuest(Long memberId, CreateQuestRequestDto dto) {
-    MemberGoal memberGoal = memberGoalService.findMemberGoal(memberId, dto.goalId());
+    MemberGoal memberGoal =
+        memberGoalQueryService.findMemberGoalByMemberIdAndGoalId(memberId, dto.goalId());
     memberGoal.validateMember(memberId);
 
     int newQuestSequence = questQueryService.getQuestCountsByGoalId(dto.goalId()) + 1;

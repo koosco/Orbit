@@ -1,6 +1,5 @@
-package com.groom.orbit.goal.goal.application.query;
+package com.groom.orbit.goal.goal.application;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -29,15 +28,10 @@ public class GoalQueryService {
   }
 
   public Optional<Goal> findGoalByTitleAndCategory(String title, String category) {
-
     return goalRepository.findByTitleAndCategory(title, GoalCategory.from(category));
   }
 
   public GetGoalCategoryResponseDto getGoalCategory() {
     return new GetGoalCategoryResponseDto(GoalCategory.getAll());
-  }
-
-  public List<Goal> findNotIn(List<Long> startIds) {
-    return goalRepository.findNotIn(startIds);
   }
 }
